@@ -1,18 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 //아래 언어는 사실 html이 아니라 JSX
 function App() {
 
-  let post = '강남 우동 맛집'; //DB에서 가져왔다고 가정
+  let [[title1, title2, title3], b] = useState(['남자코트 추천', '강남 우동맛집', '파이썬독학']);
 
   return (
     <div className="App">
       {/* 상단메뉴 만들기 */}
       <div className="black-nav">
-        <h4 style={{color: 'red', fontSize: '20px'}}>블로그입니다.</h4>
+        <h4>ReactBlog</h4>
       </div>
-      <h4>{post}</h4>
+      {/* 블로그 글 리스트 만들기 */}
+      <ul className="list">
+        <h4>{title1}</h4>
+        <p>2월 17일 발행</p>
+      </ul>
+      <ul className="list">
+        <h4>{title2}</h4>
+        <p>2월 17일 발행</p>
+      </ul>
+      <ul className="list">
+        <h4>{title3}</h4>
+        <p>2월 17일 발행</p>
+      </ul>
     </div>
   );
 }
