@@ -8,10 +8,10 @@ function App() {
   let [title, changeTitle] = useState(['남자코트 추천', '강남 우동맛집', '파이썬독학']);
   let [like, updateLike] = useState(0);
 
-  function setTitle() {
-    title[0] = '여자코트 추천';
-    changeTitle([...title]);
-  }
+  // function setTitle() {
+  //   title[0] = '여자코트 추천';
+  //   changeTitle([...title]);
+  // }
 
   return (
     <div className="App">
@@ -19,10 +19,18 @@ function App() {
       <div className="black-nav">
         <h4>ReactBlog</h4>
       </div>
+
+      {/* 글목록 변경 버튼 생성 */}
+      <button onClick={() => {
+          let copy = [...title];
+          copy[0] = '여자코트 추천';
+          changeTitle(copy);
+        }}>change</button> 
+
       {/* 블로그 글 리스트 만들기 */}
       <div className="list">
         {/* 좋아요 갯수 생성 */}
-        <h4>{title[0]} <span onClick={()=>{updateLike( like+1 )}}>♥️</span> {like} <button onClick={setTitle}>change</button> </h4>
+        <h4>{title[0]} <span onClick={()=>{updateLike( like+1 )}}>♥️</span> {like} </h4>
         <p>2월 17일 발행</p>
       </div>
 
