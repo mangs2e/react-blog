@@ -20,6 +20,12 @@ function App() {
         <h4>ReactBlog</h4>
       </div>
 
+      {/* 가나다순 정렬 버튼 생성 */}
+      <button onClick={() => {
+        let sortedTitle = [...title.sort()];
+        changeTitle(sortedTitle);
+      }}>정렬</button>
+
       {/* 글목록 변경 버튼 생성 */}
       <button onClick={() => {
           let copy = [...title];
