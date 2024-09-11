@@ -6,7 +6,7 @@ import { useState } from 'react';
 function App() {
 
   let [title, changeTitle] = useState(['남자코트 추천', '강남 우동맛집', '파이썬독학']);
-  let [like, updateLike] = useState(0);
+  let [like, updateLike] = useState([0, 0, 0]);
   let [modal, setModal] = useState('close');
 
   // function setTitle() {
@@ -36,9 +36,9 @@ function App() {
 
       {/* 블로그 글 리스트 만들기 */}
       {/* 제목 클릭시 상세 모달 생성, 꺼짐 */}
-      <div className="list" >
+      {/* <div className="list" > */}
         {/* 좋아요 갯수 생성 */}
-        <h4 onClick={() => {
+        {/* <h4 onClick={() => {
         modal == 'open' ?  setModal('close') : setModal('open');
       }}>{title[0]} <span onClick={()=>{updateLike( like+1 )}}>♥️</span> {like} </h4>
         <p>2월 17일 발행</p>
@@ -52,7 +52,27 @@ function App() {
       <div className="list">
         <h4>{title[2]}</h4>
         <p>2월 17일 발행</p>
-      </div>
+      </div> */}
+
+      {/* 코드 반복문 */}
+      {
+        title.map(function(a, i) {
+          return (
+            <div className="list">
+            <h4 onClick={() => {
+              modal == 'open' ?  setModal('close') : setModal('open');
+            }}>{title[i]} 
+            <span onClick={(e)=>{
+              e.stopPropagation();
+              let copy = [...like];
+              copy[i] = copy[i] + 1;
+              updateLike(copy)
+              }}>♥️</span> {like[i]}</h4>
+            <p>2월 17일 발행</p>
+          </div>
+          )
+        })
+      }
 
       {/* 모달 상세페이지 컴포넌트 생성(조건문 사용) */}
       {
