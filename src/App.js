@@ -36,15 +36,11 @@ function App() {
 
       {/* 블로그 글 리스트 만들기 */}
       {/* 제목 클릭시 상세 모달 생성, 꺼짐 */}
-      <div className="list" onClick={() => {
-        if(modal == 'open') {
-          setModal('close');
-        } else {
-          setModal('open');
-        }
-      }}>
+      <div className="list" >
         {/* 좋아요 갯수 생성 */}
-        <h4>{title[0]} <span onClick={()=>{updateLike( like+1 )}}>♥️</span> {like} </h4>
+        <h4 onClick={() => {
+        modal == 'open' ?  setModal('close') : setModal('open');
+      }}>{title[0]} <span onClick={()=>{updateLike( like+1 )}}>♥️</span> {like} </h4>
         <p>2월 17일 발행</p>
       </div>
 
