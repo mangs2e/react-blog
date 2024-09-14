@@ -76,7 +76,7 @@ function App() {
 
       {/* 모달 상세페이지 컴포넌트 생성(조건문 사용) */}
       {
-        modal === 'open' ? <Modal title={title} color="orange"/> : null
+        modal === 'open' ? <Modal title={title} color="orange" changeTitle={changeTitle}/> : null
       }
       
     </div>
@@ -89,6 +89,11 @@ function Modal(props) {
       <h4>{props.title[0]}</h4>
       <p>내용</p>
       <p>상세내용</p>
+      <button onClick={() => {
+        let copy = [...props.title];
+        copy[0] = '여자코트 추천';
+        props.changeTitle(copy);
+      }}>제목 수정</button>
     </div>
   )
 }
