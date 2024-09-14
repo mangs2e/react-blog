@@ -60,7 +60,7 @@ function App() {
           return (
             <div className="list">
             <h4 onClick={() => {
-              modal == 'open' ?  setModal('close') : setModal('open');
+              modal === 'open' ?  setModal('close') : setModal('open');
             }}>{title[i]} 
             <span onClick={(e)=>{
               e.stopPropagation();
@@ -76,17 +76,17 @@ function App() {
 
       {/* 모달 상세페이지 컴포넌트 생성(조건문 사용) */}
       {
-        modal == 'open' ? <Modal/> : null
+        modal === 'open' ? <Modal title={title} color="orange"/> : null
       }
       
     </div>
   );
 }
 
-function Modal() {
+function Modal(props) {
   return (
-    <div className='modal'>
-      <h4>제목</h4>
+    <div className='modal' style={{background: props.color}}>
+      <h4>{props.title[0]}</h4>
       <p>내용</p>
       <p>상세내용</p>
     </div>
