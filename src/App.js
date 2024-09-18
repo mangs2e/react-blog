@@ -9,6 +9,7 @@ function App() {
   let [like, updateLike] = useState([0, 0, 0]);
   let [modal, setModal] = useState('close');
   let [detailedTitle, setTitle] = useState(0);  
+  let [inputValue, setInputValue] = useState('');
 
   return (
     <div className="App">
@@ -43,7 +44,7 @@ function App() {
               setTitle(i);
             }}>{title[i]} 
             <span onClick={(e)=>{
-              e.stopPropagation();
+              e.stopPropagation(); //이벤트 버블링 막아주는 함수
               let copy = [...like];
               copy[i] = copy[i] + 1;
               updateLike(copy)
@@ -53,6 +54,10 @@ function App() {
           )
         })
       }
+
+      {/* 글 발행 기능 */}
+      <input onInput={(e) => {
+        setInputValue(e.target.value)}}></input>
 
       {/* 모달 상세페이지 컴포넌트 생성(조건문 사용) */}
       {
