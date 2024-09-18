@@ -29,7 +29,7 @@ function App() {
           let copy = [...title];
           copy[0] = '여자코트 추천';
           changeTitle(copy);
-        }}>change</button> 
+        }}>제목 수정</button> 
 
       {/* 블로그 글 리스트 만들기 */}
       {/* 코드 반복문 */}
@@ -50,6 +50,12 @@ function App() {
               updateLike(copy)
               }}>♥️</span> {like[i]}</h4>
             <p>2월 17일 발행</p>
+            <button onClick={() => {
+              title.splice(i, 1);
+              like.splice(i, 1);
+              changeTitle([...title]);
+              updateLike([...like]);
+            }}>삭제</button>
           </div>
           )
         })
@@ -58,6 +64,12 @@ function App() {
       {/* 글 발행 기능 */}
       <input onInput={(e) => {
         setInputValue(e.target.value)}}></input>
+      <button onClick={() => {
+        title.push(inputValue);
+        like.push(0);
+        changeTitle([...title]);
+        updateLike([...like]);
+      }}>글 발행</button>
 
       {/* 모달 상세페이지 컴포넌트 생성(조건문 사용) */}
       {
