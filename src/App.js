@@ -7,6 +7,7 @@ function App() {
 
   let [title, changeTitle] = useState(['남자코트 추천', '강남 우동맛집', '파이썬독학']);
   let [like, updateLike] = useState([0, 0, 0]);
+  let [date, setDate] = useState([new Date().toLocaleDateString(),new Date().toLocaleDateString(),new Date().toLocaleDateString()]);
   let [modal, setModal] = useState('close');
   let [detailedTitle, setTitle] = useState(0);  
   let [inputValue, setInputValue] = useState('');
@@ -49,14 +50,17 @@ function App() {
               copy[i] = copy[i] + 1;
               updateLike(copy)
               }}>♥️</span> {like[i]}</h4>
-            <p>2월 17일 발행</p>
+            <p>{date[i]} 발행</p>
             <button onClick={() => {
               let titleCopy = [...title];
               let likeCopy = [...like];
+              let dateCopy = [...date];
               titleCopy.splice(i, 1);
               likeCopy.splice(i, 1);
+              dateCopy.splice(i, 1);
               changeTitle(titleCopy);
               updateLike(likeCopy);
+              setDate(dateCopy);
             }}>삭제</button>
           </div>
           )
@@ -66,13 +70,16 @@ function App() {
       {/* 글 발행 기능 */}
       <input onInput={(e) => {
         setInputValue(e.target.value)}}></input>
-      <button onClick={() => {
+      <button onClick={inputValue === '' ? null : () => {
         let titleCopy = [...title];
         let likeCopy = [...like];
+        let dateCopy = [...date];
         titleCopy.push(inputValue);
         likeCopy.push(0);
+        dateCopy.push(new Date().toLocaleDateString());
         changeTitle(titleCopy);
         updateLike(likeCopy);
+        setDate(dateCopy);
       }}>글 발행</button>
 
       {/* 모달 상세페이지 컴포넌트 생성(조건문 사용) */}
