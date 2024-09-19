@@ -51,10 +51,12 @@ function App() {
               }}>♥️</span> {like[i]}</h4>
             <p>2월 17일 발행</p>
             <button onClick={() => {
-              title.splice(i, 1);
-              like.splice(i, 1);
-              changeTitle([...title]);
-              updateLike([...like]);
+              let titleCopy = [...title];
+              let likeCopy = [...like];
+              titleCopy.splice(i, 1);
+              likeCopy.splice(i, 1);
+              changeTitle(titleCopy);
+              updateLike(likeCopy);
             }}>삭제</button>
           </div>
           )
@@ -65,10 +67,12 @@ function App() {
       <input onInput={(e) => {
         setInputValue(e.target.value)}}></input>
       <button onClick={() => {
-        title.push(inputValue);
-        like.push(0);
-        changeTitle([...title]);
-        updateLike([...like]);
+        let titleCopy = [...title];
+        let likeCopy = [...like];
+        titleCopy.push(inputValue);
+        likeCopy.push(0);
+        changeTitle(titleCopy);
+        updateLike(likeCopy);
       }}>글 발행</button>
 
       {/* 모달 상세페이지 컴포넌트 생성(조건문 사용) */}
