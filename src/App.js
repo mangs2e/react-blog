@@ -9,6 +9,7 @@ function App() {
   let [like, updateLike] = useState([0, 0, 0]);
   let [modal, setModal] = useState('close');
   let [detailedTitle, setTitle] = useState(0);  
+  let [inputValue, setInputValue] = useState('');
 
   return (
     <div className="App">
@@ -28,7 +29,7 @@ function App() {
           let copy = [...title];
           copy[0] = '여자코트 추천';
           changeTitle(copy);
-        }}>change</button> 
+        }}>제목 수정</button> 
 
       {/* 블로그 글 리스트 만들기 */}
       {/* 코드 반복문 */}
@@ -43,16 +44,36 @@ function App() {
               setTitle(i);
             }}>{title[i]} 
             <span onClick={(e)=>{
-              e.stopPropagation();
+              e.stopPropagation(); //이벤트 버블링 막아주는 함수
               let copy = [...like];
               copy[i] = copy[i] + 1;
               updateLike(copy)
               }}>♥️</span> {like[i]}</h4>
             <p>2월 17일 발행</p>
+            <button onClick={() => {
+              let titleCopy = [...title];
+              let likeCopy = [...like];
+              titleCopy.splice(i, 1);
+              likeCopy.splice(i, 1);
+              changeTitle(titleCopy);
+              updateLike(likeCopy);
+            }}>삭제</button>
           </div>
           )
         })
       }
+
+      {/* 글 발행 기능 */}
+      <input onInput={(e) => {
+        setInputValue(e.target.value)}}></input>
+      <button onClick={() => {
+        let titleCopy = [...title];
+        let likeCopy = [...like];
+        titleCopy.push(inputValue);
+        likeCopy.push(0);
+        changeTitle(titleCopy);
+        updateLike(likeCopy);
+      }}>글 발행</button>
 
       {/* 모달 상세페이지 컴포넌트 생성(조건문 사용) */}
       {
